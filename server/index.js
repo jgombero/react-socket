@@ -13,6 +13,10 @@ const PORT = process.env.PORT || 5000;
 io.on("connection", (socket) => {
   const { id } = socket.client;
   console.log(`User connected: ${id}`);
+
+  socket.on("chat message", (msg) => {
+    console.log(`${id}: ${msg.msg}`);
+  });
 });
 
 server.listen(PORT, () => {
