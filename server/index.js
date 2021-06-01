@@ -16,6 +16,7 @@ io.on("connection", (socket) => {
 
   socket.on("chat message", (msg) => {
     console.log(`${id}: ${msg.msg}`);
+    io.emit("chat message", { id, msg });
   });
 });
 
