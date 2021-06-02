@@ -14,9 +14,10 @@ io.on("connection", (socket) => {
   const { id } = socket.client;
   console.log(`User connected: ${id}`);
 
-  socket.on("chat message", (msg) => {
-    console.log(`${id}: ${msg.msg}`);
-    io.emit("chat message", { id, msg });
+  socket.on("chat message", ({ nickname, msg }) => {
+    const name = nickname ? nickname : id;
+    console.log(`${name}: ${msg}`);
+    io.emit("chat message", { nickname: name, msg });
   });
 });
 
